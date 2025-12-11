@@ -1,7 +1,7 @@
 {
     "name": "JobCheck - Analisi Annunci di lavoro",
     "short_name": "JobCheck",
-    "description": "Strumento per la verifica della credibilità degli annunci di lavoro online.",
+    "description": "Strumento per la verifica della credibilità degli annunci di lavoro online Progetto creato da Gaetano Percuoco Bari | EPI-ITALIA Etica per Imprese. Contatti: gae.devba@gmail.com, P.IVA 05874260721.",
     "start_url": "index.html",
     "display": "standalone",
     "orientation": "portrait",
