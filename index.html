@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<!-- 
-  PROGETTO: JOBCHECK BETA (VERSIONE FINALE)
-  Autore: Gaetano Percuoco Bari | EPI-ITALIA Etica per Imprese
-  Contatti: gae.devba@gmail.com | P.IVA 05874260721
-  Creazione: 04/11/2025
-  Data Ultima Modifica: 11/12/2025
--->
 <html lang="it">
 <head>
     <meta charset="UTF-8">
@@ -30,27 +23,15 @@
     <script defer src="/_vercel/insights/script.js" data-sdkn="prj_sabOscgFwAZWGZdoqYu858pDHW9R"></script>
 
     <style>
-    
         /* Stili per permettere lo scorrimento e PULIRE il body */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            /* ... il resto dei tuoi stili ... */
+            padding: 15px 10px 0 10px; 
+            background-color: #eef2f9;
+            color: #333;
         }
-    </style>
 
-</head>
-<body>
-    ```
-/* Stili per permettere lo scorrimento e PULIRE il body */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    /* 🟢 MODIFICA CHIAVE: 15px SOPRA, 0 SOTTO, 10px LATO (per staccare da tutti i bordi) 🟢 */
-    padding: 15px 10px 0 10px; 
-    background-color: #eef2f9;
-    color: #333;
-}
         /* CONTENITORE PRINCIPALE: ORA GESTISCE LA LARGHEZZA E LA CENTRATURA */
         #welcome-box {
             background-color: white;
@@ -71,7 +52,7 @@ body {
         }
         #welcome-image {
             width: 100%;
-            min-height: 220px; /* Altezza bilanciata per non tagliare */
+            min-height: 220px; 
             height: auto;
             display: block;
             vertical-align: middle; 
@@ -120,26 +101,29 @@ body {
             transform: translateY(-2px);
         }
         
-  /* CONTENUTO PRINCIPALE SOTTO L'IMMAGINE: MINIMIZZATO E CENTRATO */
-.main-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
-    
-    /* 🟢 MODIFICA CHIAVE: 15px SOPRA, 5px SOTTO 🟢 */
-    padding: 15px 20px 5px; 
-    text-align: center;
-}
+        /* CONTENUTO PRINCIPALE SOTTO L'IMMAGINE */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            padding: 15px 20px 5px; 
+            text-align: center;
+        }
         
-        /* TITOLO H1 GENERALE: IL TESTO E' GIALLO E MARGINE CORRETTO */
+        /* TITOLO H1 GENERALE */
         .main-content h1 {
-            color: #f4b400; /* Giallo (riempimento di base) */
-            margin: 20px 0 0; /* Spazio sopra corretto */
+            color: #f4b400; 
+            margin: 20px 0 0; 
             font-size: 2.0em; 
             line-height: 1; 
             letter-spacing: -1px; 
         }
+    </style>
+
+</head>
+<body>
+    ```
 
         /* 🔴 JOB: Contorno Nero (usando text-shadow per nitidezza) 🔴 */
         #job-word {
