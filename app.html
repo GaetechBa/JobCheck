@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JobCheck - Analisi annunci di lavoro</title>
+    <meta name="description" content="Strumento di analisi per annunci di lavoro falsi e che rubano i dati. Cerca il lavoro vero e non prestarti a false inserzioni">
+
+    <meta property="og:title" content="JobCheck - Analisi annunci di lavoro">
+    <meta property="og:description" content="Strumento di analisi per annunci di lavoro falsi e che rubano i dati">
+    <meta property="og:image" content="https://app-job-analisis.vercel.app/JOB_CECK.jpg">
+    <meta property="og:url" content="https://app-job-analisis.vercel.app/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JobCheck - Analisi annunci di lavoro">
+    <meta name="twitter:description" content="Strumento di analisi per annunci di lavoro falsi e che rubano i dati">
+    <meta name="twitter:image" content="https://app-job-analisis.vercel.app/JOB_CECK.jpg">
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1c6aa7"> 
+    <link rel="icon" type="image/png" href="icon-192.png"> 
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon-512.png">
+    <style>
+        /* STILE GLOBALE & LAYOUT (CORRETTO) */
+        body {  /* Rimosse max-width e margin per evitare problemi di overflow */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 10px; 
+            background-color: #eef2f9; 
+            color: #333;
+        }
+
+        /* NUOVO WRAPPER: Limita e centra TUTTO il contenuto della pagina */
+        #main-content-wrapper {
+            max-width: 650px; 
+            margin: 0 auto; 
+            padding: 0; /* Padding gestito meglio dai div interni */
+        }
+
+        h1 { 
+            color: #1c6aa7; 
+            text-align: center; 
+            margin-bottom: 3px; 
+            font-size: 1.5em; 
+            letter-spacing: -0.5px;
+        }
+        p { 
+            text-align: center; 
+            color: #667; 
+            margin-bottom: 15px; 
+            font-size: 0.9em; 
+        }
+        /* CONTENITORE PRINCIPALE (MODULO) */
+        #form-analisi {
+            background-color: white;
+            padding: 12px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+            border: 1px solid #ddd;
+        }
+        .input-group {
+            margin-bottom: 8px; 
+            padding-bottom: 8px; 
+            border-bottom: 1px solid #f0f0f0; 
+        }
+        .input-group:last-of-type {
+            border-bottom: none; 
+            margin-bottom: 5px; 
+            padding-bottom: 0;
+        }
+        label {
+            display: block; 
+            font-weight: 600; 
+            margin-bottom: 3px; 
+            color: #1c6aa7;
+            font-size: 1em; 
+        }
+        input.input-text, select { 
+            width: 100%; 
+            padding: 10px; 
+            border-radius: 5px; 
+            border: 1px solid #ccc; 
+            font-size: 0.95em; 
+            box-sizing: border-box; 
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background-color: #fff;
+            appearance: none; 
+        }
+        input.input-text:focus, select:focus {
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2); 
+            outline: none;
+        }
+        #button-container {
+            display: flex; 
+            gap: 6px; 
+            margin-top: 15px; 
+        }
+        .action-button {
+            flex-grow: 1; 
+            padding: 12px; 
+            border: none;
+            border-radius: 5px; 
+            font-size: 0.9em; 
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        #analyze-button {
+            background-color: #34a853; 
+            color: white;
+        }
+        #analyze-button:hover {
+            background-color: #2e8b45;
+            transform: translateY(-1px);
+        }
+        #reset-button {
+            background-color: #f4b400; 
+            color: #333;
+        }
+        #reset-button:hover {
+            background-color: #dba500;
+            transform: translateY(-1px);
+        }
+        
+        /* NUOVO STILE PER IL BANNER BETA */
+        #beta-banner {
+            text-align: center;
+            font-size: 0.8em; 
+            color: white; 
+            background-color: #1c6aa7; 
+            padding: 5px 10px; 
+            border-radius: 5px;
+            margin-top: 15px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        #results-container {
+            margin-top: 15px; 
+            padding: 0; 
+            border-radius: 8px; 
+            background-color: #1c6aa7; 
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            overflow: hidden; 
+        }
+        #results-container h2 {
+            margin: 0;
+            padding: 10px; 
+            font-size: 1.3em; 
+            background-color: rgba(0, 0, 0, 0.1); 
+        }
+        #results-container div:nth-of-type(1) { 
+            padding: 8px 10px; 
+            font-size: 1em;
+        }
+        .risultato {
+            font-size: 1.2em; 
+            font-weight: 700;
+            padding: 5px 8px;
+            border-radius: 4px;
+            display: inline-block; 
+        }
+        #classificazione {
+            display: block; 
+            width: 100%;
+            padding: 12px 10px; 
+            margin: 0; 
+            font-size: 1.3em; 
+            font-weight: bold;
+            border-radius: 0 0 8px 8px; 
+            box-sizing: border-box;
+            line-height: 1.2;
+        }
+        .history-link-button {
+            width: 100%; 
+            padding: 12px; 
+            margin-top: 15px; 
+            background-color: #1c6aa7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .history-link-button:hover {
+            background-color: #155b93;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-content-wrapper">
+
+        <h1>🔍 JobCheck</h1>
+        <p>Analisi Offerte di lavoro Fake - Un aiuto rapido e concreto per la valutazione</p>
+
+        <div id="form-analisi">
+            <div class="input-group">
+                <label for="ruolo">Ruolo/Titolo Annuncio</label>
+                <input type="text" id="ruolo" class="input-text" placeholder="Es. Junior Backend Developer">
+            </div>
+            <div class="input-group">
+                <label for="azienda">Azienda</label>
+                <input type="text" id="azienda" class="input-text" placeholder="Es. Tech Srl">
+            </div>
+            
+            <div class="input-group">
+                <label for="source-input">Fonte dell'Annuncio</label>
+                <select id="source-input">
+                    <option value="Non Specificata" selected>-- Seleziona la Fonte --</option>
+                    <option value="Indeed">Indeed</option>
+                    <option value="LinkedIn">LinkedIn</option>
+                    <option value="Subito.it">Subito.it</option>
+                    <option value="Bacheca.it">Bacheca.it</option>
+                    <option value="Infojobs">Infojobs</option>
+                    <option value="Sito Agenzia per il Lavoro">Sito Agenzia per il Lavoro</option>
+                    <option value="Altro">Altro</option>
+                </select>
+            </div>
+            
+            <div class="input-group"><label for="C1">1. L’indirizzo email da contattare è presente?</label><select class="input-score" id="C1"><option value="0" selected>-- Seleziona un'opzione --</option><option value="5">Si, con dominio aziendale e nominativo </option><option value="4">Si, con dominio aziendale ma generico (es. info@azienda.it) </option><option value="2">Si, con indirizzo pubblico (es. azienda@gmail @libero ecc) </option><option value="1">No, non è presente </option></select></div>
+            <div class="input-group"><label for="C2">2. Ti hanno chiesto soldi o documenti (IBAN/C.I.) subito?</label><select class="input-score" id="C2"><option value="0" selected>-- Seleziona un'opzione --</option><option value="5">No, procedura standard </option><option value="3">Richiesto solo CV, nessun altro documento </option><option value="-9">Sì, per formazione o kit iniziale/IBAN </option></select></div>
+            <div class="input-group"><label for="C3">3. Descrizione dell'Offerta</label><select class="input-score" id="C3"><option value="0" selected>-- Seleziona un'opzione --</option><option value="5">Dettagliata e di congrua comprensione </option><option value="3">Esprime molta storia dell’Azienda ma è generica sulla loro attività </option><option value="-3">Vaga/La formazione è citata come un plus tra quello che offrono </option><option value="-1">Altisonante per il ruolo ricercato/poco coerente </option></select></div>
+            <div class="input-group"><label for="C4">4. Chiarezza sullo Stipendio</label><select class="input-score" id="C4"><option value="0" selected>-- Seleziona un'opzione --</option><option value="5">RAL, fascia retributiva indicata o CCNL </option><option value="3">Indicato solo il tipo di contratto </option><option value="-9">Ottimi guadagni/ Nessun fisso/ Partita IVA </option></select></div>
+            <div class="input-group"><label for="C5">5. Processo di Selezione</label><select class="input-score" id="C5"><option value="0" selected>-- Seleziona un'opzione --</option><option value="5">Colloquio formale (sede o video) </option><option value="3">Colloquio telefonico o videochiamata </option><option value="-3">Chat (telegram/whatsapp) o invio lunghi questionari </option></select></div>
+            <div class="input-group"><label for="C6">6. Sito Web Aziendale?</label><select class="input-score" id="C6"><option value="0" selected>-- Seleziona un'opzione --</option><option value="5">Esiste, professionale e coerente </option><option value="3">Esiste </option><option value="1">Non esiste </option></select></div>
+            <div class="input-group"><label for="C7">7. È indicata la ragione sociale dell’azienda?</label><select class="input-score" id="C7"><option value="0" selected>-- Seleziona un'opzione --</option><option value="5">Si completa (Nome legale,/Partita IVA) </option><option value="2">Si ma è solo un nome (es. "Team Bravo") </option><option value="0">No </option></select></div>
+            
+            <div id="button-container">
+                <button id="analyze-button" class="action-button" type="button">✔️ Analizza Annuncio di Lavoro</button>
+                <button id="reset-button" class="action-button" type="button">✖️ Resetta Analisi</button>
+            </div>
+
+        </div> 
+        
+        <div id="beta-banner">
+            Versione BETA 1.0 creata da Gaetano Percuoco Bari
+        </div>
+
+        <div id="results-container">
+            <h2>RISULTATO ANALISI</h2>
+            <div>Punteggio Totale: <span class="risultato" id="punteggio-totale">0</span> / 35</div>
+            <div class="risultato" id="classificazione">In attesa...</div>
+            
+            <button id="save-button" class="action-button" type="button" style="width:100%; margin-top:15px; background-color:#ffffff;">💾 Salva Risultato</button>
+        </div>
+        
+        <div style="padding-top: 5px;">
+            <div style="display: flex; gap: 8px; margin-top: 15px;">
+                
+                <a href="index.html" style="text-decoration: none; flex-grow: 1;">
+                    <button class="history-link-button" type="button" style="background-color: #1c6aa7;">
+                        🏠 Vai alla Home
+                    </button>
+                </a>
+
+                <a href="mission.html" style="text-decoration: none; flex-grow: 1;">
+                    <button class="history-link-button" type="button" style="background-color: #f4b400;">
+                        📜 Missione
+                    </button>
+                </a>
+            </div>
+
+            <a href="history.html" style="text-decoration:none;">
+                <button class="history-link-button" type="button">
+                    ⏱️ Apri Cronologia Analisi
+                </button>
+            </a>
+        </div>
+        </div> <script>
+        // LOGICA DI CALCOLO E SALVATAGGIO (JAVASCRIPT)
+        
+        const MAX_HISTORY_ITEMS = 100; 
+        const scoreInputs = document.querySelectorAll('.input-score');
+        const classificationElement = document.getElementById('classificazione');
+        const totalScoreElement = document.getElementById('punteggio-totale'); 
+        const analyzeButton = document.getElementById('analyze-button');
+        const resetButton = document.getElementById('reset-button');
+        const saveButton = document.getElementById('save-button');
+        const sourceInput = document.getElementById('source-input');
+
+        // --- FUNZIONI DI GESTIONE DATI (LOCALSTORAGE) ---
+        function loadHistory() {
+            const historyJSON = localStorage.getItem('gav_history');
+            return historyJSON ? JSON.parse(historyJSON) : [];
+        }
+        
+        function saveHistory(history) {
+            localStorage.setItem('gav_history', JSON.stringify(history));
+        }
+        
+        // --- FUNZIONE DI CLASSIFICAZIONE ---
+        function getClassification(totalScore) {
+            let classificationText = 'In attesa...';
+            let color = '#1c6aa7'; 
+            
+            if (totalScore <= 7) { 
+                classificationText = '🔴 FALSO / SCAM';
+                color = '#dc3545'; 
+            } else if (totalScore <= 14) {
+                classificationText = '🟠 MOLTO DUBBIO';
+                color = '#ffc107'; 
+            } else if (totalScore <= 18) {
+                classificationText = '🟡 FÀ MOLTA ATTENZIONE';
+                color = '#ffeb3b'; 
+            } else if (totalScore <= 28) {
+                classificationText = '🟢 PROBABILMENTE REALE';
+                color = '#34a853'; 
+            } else { 
+                classificationText = '🔵 CERTAMENTE REALE';
+                color = '#1a73e8'; 
+            }
+
+            return { classificationText, color };
+        }
+
+        // --- FUNZIONE DI ANALISI ---
+        function updateAnalysis() {
+            let totalScore = 0;
+            scoreInputs.forEach(input => {
+                const score = parseInt(input.value) || 0; 
+                totalScore += score;
+            });
+
+            totalScoreElement.textContent = totalScore;
+            
+            const { classificationText, color } = getClassification(totalScore);
+
+            classificationElement.textContent = classificationText;
+            classificationElement.style.backgroundColor = color;
+            
+            const textColor = (totalScore > 7 && totalScore <= 21) ? '#333' : 'white';
+            classificationElement.style.color = textColor; 
+        }
+        
+        // --- FUNZIONE DI SALVATAGGIO ---
+        function saveResult() {
+            const role = document.getElementById('ruolo').value.trim();
+            const company = document.getElementById('azienda').value.trim();
+            const source = sourceInput.value; 
+            const score = parseInt(totalScoreElement.textContent);
+            const classificationText = classificationElement.textContent; 
+            
+            if (!role && !company) {
+                alert("Inserisci almeno il Ruolo o l'Azienda prima di salvare.");
+                return;
+            }
+            
+            const now = new Date();
+            const formattedDate = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+
+            const newEntry = {
+                title: role || 'Nessun Ruolo Specificato',
+                company: company || 'Nessuna Azienda Specificata',
+                source: source,
+                score: score,
+                classification: classificationText,
+                timestamp: now.getTime(), 
+                date: formattedDate
+            };
+            
+            let history = loadHistory();
+            history.unshift(newEntry);
+            
+            if (history.length > MAX_HISTORY_ITEMS) {
+                history = history.slice(0, MAX_HISTORY_ITEMS);
+            }
+            
+            saveHistory(history);
+            alert('Risultato salvato! Puoi visualizzare la cronologia nella pagina dedicata.');
+        }
+
+
+        // --- SETUP E INIZIALIZZAZIONE ---
+        
+        function resetForm() {
+            scoreInputs.forEach(input => {
+                input.selectedIndex = 0; 
+            });
+            
+            document.getElementById('ruolo').value = '';
+            document.getElementById('azienda').value = '';
+            sourceInput.selectedIndex = 0;
+
+            totalScoreElement.textContent = '0';
+            classificationElement.textContent = 'In attesa...'; 
+            classificationElement.style.backgroundColor = '#1c6aa7'; 
+            classificationElement.style.color = 'white'; 
+        }
+
+        function setupButtons() {
+            analyzeButton.addEventListener('click', updateAnalysis);
+            resetButton.addEventListener('click', resetForm);
+            saveButton.addEventListener('click', saveResult); 
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            resetForm(); 
+            setupButtons(); 
+        });
+        
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobCheck - Benvenuto</title>
+    <link rel="manifest" href="manifest.json">
+    
+    <meta name="theme-color" content="#1c6aa7"> 
+
+    <link rel="icon" type="image/png" href="icon-192.png"> 
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon-512.png">
+    <style>
+
+        /* Stili per permettere lo scorrimento del contenuto */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0; 
+            background-color: #eef2f9;
+            color: #333;
+            /* Rimuoviamo display:flex e min-height:100vh per consentire lo scroll */
+        }
+        #welcome-box {
+            background-color: white;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            text-align: center;
+            width: 100%; 
+            max-width: 500px;
+            margin: 0 auto;
+            overflow: hidden; 
+            padding-bottom: 80px; /* SPAZIO AGGIUNTO per non coprire il contenuto col pulsante fisso */
+        }
+        #image-container {
+            width: 100%;
+            height: auto; 
+        }
+        #welcome-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            vertical-align: middle; 
+        }
+        
+        /* STILE CRUCIALE PER IL PULSANTE FISSO IN BASSO */
+        #button-area {
+            position: fixed; /* Mantiene l'area fissata in relazione al viewport */
+            bottom: 0; /* Lo posiziona sul fondo */
+            left: 0;
+            right: 0;
+            width: 100%;
+            padding: 10px 0; /* Padding sopra e sotto il pulsante */
+            background-color: white; /* Sfondo bianco per staccare dal body (eef2f9) */
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1); /* Ombra sopra per staccare dal contenuto */
+            text-align: center;
+        }
+        /* Contenitore interno per limitare la larghezza massima del pulsante e centrarlo */
+        #button-area-inner {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        #btn-enter {
+            display: block; 
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            
+            /* MODIFICA 1: COLORE ROSSO PER RISALTO */
+            background-color: #dc3545; /* Rosso acceso */
+            color: white;
+            transition: background-color 0.2s, transform 0.1s;
+            box-sizing: border-box;
+        }
+        #btn-enter:hover {
+            background-color: #c82333; /* Rosso più scuro al passaggio */
+            transform: translateY(-2px);
+        }
+        #beta-note {
+            font-size: 0.8em; 
+            margin-top: 15px; 
+            color: #aaa;
+        }
+        .main-content {
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="welcome-box">
+        
+        <div id="image-container">
+            <img id="welcome-image" src="welcome_banner.png" alt="JobCheck Banner">
+        </div>
+        
+        <div class="main-content">
+            <h1>JobCheck</h1>
+            <p style="margin-bottom: 5px;">Il tuo strumento gratuito e obiettivo per verificare la credibilità degli annunci di lavoro online.</p>
+
+            <p id="beta-note">
+                Versione BETA 1.0 | 
+                <a href="mission.html" style="color: #1c6aa7; text-decoration: none;">Missione del Progetto</a>
+            </p>
+            
+            </div>
+    </div>
+    
+    <div id="button-area">
+        <div id="button-area-inner">
+            <a href="app.html" id="btn-enter">
+                ✅ Entra in JobCheck
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

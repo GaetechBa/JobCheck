@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobCheck - Cronologia</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1c6aa7"> 
+    <link rel="icon" type="image/png" href="icon-192.png"> 
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon-512.png">
+    
+    <style>
+        /* [STILI CRONOLOGIA - Base coerente] */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; /* Rimossi margin e padding per lasciare la gestione al container */
+            padding: 0; 
+            background-color: #eef2f9; 
+            color: #333;
+        }
+        h1 { 
+            color: #1c6aa7; 
+            text-align: center; 
+            margin-bottom: 5px; 
+            font-size: 1.6em; 
+            letter-spacing: -0.5px;
+            padding-top: 15px; 
+        }
+
+        /* --- CONTENITORE PRINCIPALE DELLA CRONOLOGIA (RISOLVE IL LAYOUT) --- */
+        #history-main-wrapper {
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 15px 10px; /* Aggiunto qui il padding esterno */
+        }
+
+        #history-container {
+            margin-top: 20px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+            border: 1px solid #ddd;
+        }
+        #history-container h2 {
+            margin-top: 0;
+            color: #1c6aa7;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        #sort-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center; 
+        }
+        #sort-buttons button {
+            padding: 8px 12px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            flex-grow: 1; 
+            max-width: 150px; 
+            transition: background-color 0.2s;
+        }
+        #sort-buttons button:hover {
+             background-color: #e0e0e0;
+        }
+        
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px dashed #eee;
+            font-size: 0.95em;
+        }
+        .history-item:last-of-type {
+            border-bottom: none;
+        }
+        .history-details {
+            flex-grow: 1;
+            padding-right: 10px; 
+        }
+        .history-title {
+            font-weight: bold;
+            color: #333;
+            line-height: 1.3;
+        }
+        .history-info {
+            font-size: 0.8em;
+            color: #777;
+            margin-top: 3px;
+        }
+        .history-classification-text {
+            display: block;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-top: 3px;
+        }
+        
+        .history-score-container {
+            text-align: right;
+            min-width: 80px; 
+        }
+        .history-score {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9em;
+            display: inline-block;
+        }
+        
+        /* PULSANTE TORNA ALL'APP: STILI COMPLETI E FUNZIONANTI */
+        #home-button {
+            width: 100%; 
+            padding: 14px; 
+            margin-top: 20px; 
+            background-color: #1a73e8; /* BLU */
+            color: white; /* TESTO BIANCO */
+            border: none; 
+            border-radius: 6px; 
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        #home-button:hover {
+            background-color: #155b93;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="history-main-wrapper">
+
+        <h1>📜 Cronologia Analisi</h1>
+        
+        <div id="history-container">
+            <h2>Risultati Salvati</h2>
+            <div id="sort-buttons">
+                <button onclick="displayHistory('date')">Ordina per Data</button>
+                <button onclick="displayHistory('title')">Ordina per Titolo</button>
+                <button onclick="displayHistory('score')">Ordina per Punteggio</button>
+            </div>
+            <div id="history-list">
+            </div>
+        </div>
+        
+        <button id="home-button" onclick="window.location.href='app.html'">
+            ⬅️ Torna all'App di Analisi
+        </button>
+
+    </div> 
+
+    <script>
+        // LOGICA DI CARICAMENTO E VISUALIZZAZIONE DELLA CRONOLOGIA
+        
+        // --- FUNZIONE DI CLASSIFICAZIONE (Allineata a app.html) ---
+        function getClassification(totalScore) {
+            let color = '#1a73e8'; // Blu (Certamente Reale)
+            
+            if (totalScore <= 7) { 
+                color = '#dc3545'; // Rosso (FALSO / SCAM)
+            } else if (totalScore <= 14) {
+                color = '#ffc107'; // Arancio (MOLTO DUBBIO)
+            } else if (totalScore <= 18) {
+                color = '#ffeb3b'; // Giallo (FÀ MOLTA ATTENZIONE)
+            } else if (totalScore <= 28) {
+                color = '#34a853'; // Verde (PROBABILMENTE REALE)
+            } 
+            
+            // Colore del testo: nero su giallo/arancio, bianco altrimenti
+            const scoreTextColor = (totalScore > 7 && totalScore <= 18) ? '#333' : 'white';
+            
+            return { color, scoreTextColor };
+        }
+
+        // --- FUNZIONE DI GESTIONE DATI (LOCALSTORAGE) ---
+        function loadHistory() {
+            const historyJSON = localStorage.getItem('gav_history');
+            return historyJSON ? JSON.parse(historyJSON) : [];
+        }
+
+        // --- FUNZIONE DI VISUALIZZAZIONE E ORDINAMENTO ---
+        function displayHistory(sortBy = 'date') {
+            let history = loadHistory();
+            const historyList = document.getElementById('history-list');
+
+            // Logica di ordinamento
+            if (sortBy === 'title') {
+                history.sort((a, b) => a.title.localeCompare(b.title));
+            } else if (sortBy === 'score') {
+                // Ordine decrescente per punteggio
+                history.sort((a, b) => b.score - a.score); 
+            } else { // 'date' (default) - Ordine decrescente per timestamp
+                history.sort((a, b) => b.timestamp - a.timestamp);
+            }
+            
+            historyList.innerHTML = ''; 
+            
+            if (history.length === 0) {
+                historyList.innerHTML = '<p style="text-align:center; color:#777;">Nessuna analisi salvata.</p>';
+                return;
+            }
+            
+            history.forEach(item => {
+                const { color, scoreTextColor } = getClassification(item.score); 
+                
+                const itemHTML = `
+                    <div class="history-item">
+                        <div class="history-details">
+                            <div class="history-title">${item.title} (${item.company})</div>
+                            <span class="history-classification-text">${item.classification}</span>
+                            <div class="history-info">Fonte: <b>${item.source}</b> | Data: ${item.date}</div>
+                        </div>
+                        <div class="history-score-container">
+                            <div class="history-score" style="background-color:${color}; color:${scoreTextColor};">
+                                Punteggio: ${item.score}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                historyList.innerHTML += itemHTML;
+            });
+        }
+        
+        // Carica la cronologia all'avvio della pagina
+        document.addEventListener('DOMContentLoaded', () => {
+            displayHistory('date'); 
+        });
+    </script>
+
+</body>
+</html>

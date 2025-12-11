@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobCheck - Missione e Fondamenti Etici</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1c6aa7"> 
+    <link rel="icon" type="image/png" href="icon-192.png"> 
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon-512.png">
+        <style>
+    /* ⬇️ TUTTI GLI STILI CSS SONO CONTENUTI QUI DENTRO ⬇️ */
+        /* STILE GLOBALE & LAYOUT */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #eef2f9; 
+            color: #333;
+            line-height: 1.6;
+        }
+        h1 { 
+            color: #1c6aa7; 
+            text-align: center; 
+            margin-bottom: 5px; 
+            font-size: 1.8em; 
+            letter-spacing: -0.5px;
+            padding-top: 15px;
+        }
+        h2 {
+            color: #333;
+            font-size: 1.4em;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+            margin-top: 25px;
+        }
+        h3 {
+            color: #1c6aa7;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+        p {
+            margin-bottom: 15px;
+            text-align: justify; 
+        }
+        /* CONTENITORE PRINCIPALE: GESTISCE LA LARGHEZZA E CENTRATURA */
+        #mission-container {
+            background-color: white;
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+            border: 1px solid #ddd;
+            /* PROPRIETÀ DI CORREZIONE LARGHEZZA */
+            max-width: 750px; 
+            margin: 0 auto;
+            padding: 15px;
+        }
+        /* Stile per il pulsante Torna all'App */
+        .action-button-link {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px; 
+            margin-top: 20px; 
+            background-color: #34a853; /* Verde */
+            color: white;
+            border: none;
+            border-radius: 5px; 
+            font-size: 1em; 
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none; 
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .action-button-link:hover {
+            background-color: #2e8b45;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #1c6aa7;
+        }
+        
+        /* NUOVO STILE PER I PULSANTI DI CONTATTO (VENGONO IGNORATI SE IL CSS È ROTTO) */
+        .contact-button {
+            display: block;
+            padding: 8px 15px; 
+            margin: 8px 0; 
+            border: 1px solid #1c6aa7; 
+            border-radius: 5px; 
+            background-color: #eef2f9; 
+            color: #1c6aa7; 
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none; 
+            transition: background-color 0.2s, color 0.2s;
+            flex-grow: 1; 
+        }
+        .contact-button:hover {
+            background-color: #1c6aa7; 
+            color: white;
+        }
+        /* Stile per il contenitore dei pulsanti contatti (Flexbox per affiancarli) */
+        .contact-buttons-container {
+            display: flex; 
+            gap: 10px; 
+            margin-top: 20px;
+        }
+        /* Stile per centrare il testo nel footer */
+        .contact-info-centered {
+            text-align: center;
+        }
+    /* ⬆️ FINE TUTTI GLI STILI CSS ⬆️ */
+    </style>
+</head>
+<body>
+
+        <h1>📜 JobCheck: Missione e Fondamenti Etici</h1>
+
+    <div id="mission-container">
+
+        <h2>🎯 La Missione di JobCheck</h2>
+        <p>JobCheck è nato come risposta investigativa e algoritmica a un bisogno crescente di <span class="highlight">trasparenza nel mercato del lavoro</span>. La missione è fornire a ogni candidato uno <span class="highlight">strumento oggettivo e accessibile</span> per operare una due diligence preventiva sulla credibilità degli annunci, difendendosi dalle ambiguità e dalle frodi celate dietro migliaia di annunci di lavoro.</p>
+
+        <h2>🧐 Il Contesto: Il Velo d'Ambiguita nel Mercato del Lavoro</h2>
+        <p>La ricerca di un impiego è intrinsecamente un processo ad alta intensità emotiva e temporale. Tuttavia, le indagini condotte, basate sull'esperienza diretta di innumerevoli candidati, rivelano come questa energia venga spesso deviata da pratiche aziendali non etiche o apertamente ingannevoli. Abbiamo identificato tre principali dinamiche che minano la fiducia del candidato:</p>
+
+        <h3>1. Il Fenomeno della Raccolta Dati Non Etica</h3>
+        <p>Molti annunci, pur presentandosi con requisiti allettanti, hanno come scopo primario non l'assunzione, ma la <span class="highlight">costruzione massiva di database</span>. Questo si traduce in: furto di dati personali in fasi precoci del processo e la creazione di 'Fabbriche di Curriculum' che operano al solo fine di incrementare gli archivi per futuri scopi commerciali, senza un piano di assunzione immediato o reale.</p>
+
+        <h3>2. L'Illusione dei 'Ghost Jobs' (Offerte Fantasma)</h3>
+        <p>Le aziende pubblicano annunci di lavoro senza una reale vacanza di ruolo (i cosiddetti <span class="highlight">Ghost Jobs</span>). Le motivazioni sono multifattoriali e legate al marketing e alle finanze: l'azienda pubblica l'annuncio per <span class="highlight">apparire attiva, in crescita e in fase di espansione</span> nei confronti di investitori o concorrenti, o per simulare un reparto HR efficiente. In questi scenari, il candidato idoneo non viene mai contattato perché la posizione non è mai stata reale.</p>
+
+        <h3>3. La Frustrazione del Candidato</h3>
+        <p>L'esperienza dei candidati, raccolta tramite interviste e testimonianze dirette, rivela un elevato livello di <span class="highlight">frustrazione</span>. Dopo l'invio di innumerevoli CV, l'assenza di feedback o, peggio, l'essere contattati con proposte incoerenti o apertamente truffaldine, mina la motivazione e la fiducia nel mercato.</p>
+
+        <h2>✅ La Soluzione: Ricerca, Esperienza e Codice</h2>
+        <p>JobCheck è la sintesi di questa ricerca. Non è un algoritmo arbitrario, ma un sistema di punteggio basato su:</p>
+        <ul>
+            <li>Criteri di Rischio (Risk Scoring):Abbiamo tradotto gli indicatori di allarme (vaghezza, mancanza di ragione sociale, richiesta di denaro o dati prematura) in un modello quantificabile.</li>
+            <li>Accessibilità:La sua natura e l'utilizzo totalmente <span class="highlight">gratuito</span> riflettono l'impegno a fornire uno strumento di <span class="highlight">autodifesa digitale</span> a chi cerca lavoro, non possiede strumenti di valutazione e in un momento diverso della vita, cede o cade in trappole che ledono la dignità personale.</li>
+        </ul>
+        <p>Utilizzando JobCheck, il candidato non solo protegge il proprio tempo e i propri dati, ma partecipa attivamente a un sistema di monitoraggio che promuove la trasparenza e l'etica nel mondo del lavoro e del recruiting. </p>
+
+                <a href="app.html" class="action-button-link">
+            ⬅️ Torna all'App di Analisi (JobCheck)
+        </a>
+        
+        <hr style="border: 0; border-top: 1px solid #ddd; margin: 30px 0;">
+
+
+        <h2 id="contact-section"><span class="highlight">NESSUNO DEVE ESSERE BEFFATO NEL LAVORO... 🤗</span></h2>
+        <p class="contact-info-centered">
+            JobCheck è un progetto di Gaetano Percuoco Bari.<br>
+            Per suggerimenti, miglioramenti dei criteri o feedback sulla versione Beta, vi preghiamo di contattare il creatore che agisce per 
+            <span class="highlight">EPI-ITALIA Etica per Imprese Bari</span>.
+        </p>
+        
+        <div class="contact-buttons-container">
+            <a href="mailto:gae.devba@gmail.com" class="contact-button">
+                📧 Invia E-mail
+            </a>
+            <a href="https://www.linkedin.com/in/gaetanopercuoco/" target="_blank" class="contact-button">
+                💼 Contatto LinkedIn
+            </a>
+        </div>
+        <p class="contact-info-centered" style="font-size: 0.9em; color: #667; margin-top: 20px;">
+            Grazie per aver contribuito a rendere il mercato del lavoro più trasparente.
+        </p>
+        
+    </div> 
+
+</body>
+</html>
