@@ -12,14 +12,15 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" href="icon-512.png">
     <style>
-        /* Stili per permettere lo scorrimento e PULIRE il body */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0; 
-            background-color: #eef2f9;
-            color: #333;
-        }
+/* Stili per permettere lo scorrimento e PULIRE il body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    /* 🟢 MODIFICA CHIAVE: 15px SOPRA, 0 SOTTO, 10px LATO (per staccare da tutti i bordi) 🟢 */
+    padding: 15px 10px 0 10px; 
+    background-color: #eef2f9;
+    color: #333;
+}
         /* CONTENITORE PRINCIPALE: ORA GESTISCE LA LARGHEZZA E LA CENTRATURA */
         #welcome-box {
             background-color: white;
@@ -89,16 +90,17 @@
             transform: translateY(-2px);
         }
         
-        /* CONTENUTO PRINCIPALE SOTTO L'IMMAGINE: MINIMIZZATO E CENTRATO */
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* Centra verticalmente */
-            align-items: center; /* Centra orizzontalmente */
-            
-            padding: 15px 20px; 
-            text-align: center;
-        }
+  /* CONTENUTO PRINCIPALE SOTTO L'IMMAGINE: MINIMIZZATO E CENTRATO */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    
+    /* 🟢 MODIFICA CHIAVE: 15px SOPRA, 5px SOTTO 🟢 */
+    padding: 15px 20px 5px; 
+    text-align: center;
+}
         
         /* TITOLO H1 GENERALE: IL TESTO E' GIALLO E MARGINE CORRETTO */
         .main-content h1 {
