@@ -119,37 +119,38 @@
             line-height: 1; 
             letter-spacing: -1px; 
         }
+
+        /* 🔴 JOB: Contorno Nero (usando text-shadow per nitidezza) 🔴 */ 
+        #job-word { 
+            -webkit-text-stroke: 0; 
+            text-stroke: 0; 
+            text-shadow: 1px 1px 0 black, -1px 1px 0 black, 1px -1px 0 black, -1px -1px 0 black; 
+        } 
+        /* 🔴 CHECK: Giallo Puro 🔴 */ 
+        #check-word { 
+            -webkit-text-stroke: 0; 
+            text-stroke: 0; 
+            text-shadow: none; 
+            color: #f4b400; /* Forza il riempimento a Giallo */ 
+        } 
+        /* TESTO INFORMATIVO (AUMENTATO) */ 
+        .main-content p { 
+            margin: 5px 0 0; 
+            font-size: 1.1em; /* Ingrandito */ 
+        } 
+        /* NOTA BETA (AUMENTATA E DIVISA SU PIÙ RIGHE) */ 
+        #beta-note { 
+            font-size: 1.0em; /* Ingrandito */ 
+            margin: 5px 0 0 0; 
+            color: #aaa; 
+            line-height: 1.4; 
+        }
+
     </style>
 
 </head>
 <body>
-    ```
-
-        /* 🔴 JOB: Contorno Nero (usando text-shadow per nitidezza) 🔴 */
-        #job-word {
-            -webkit-text-stroke: 0; 
-            text-stroke: 0;
-            text-shadow: 
-                1px 1px 0 black,
-                -1px 1px 0 black,
-                1px -1px 0 black,
-                -1px -1px 0 black;
-        }
-
-        /* 🔴 CHECK: Giallo Puro 🔴 */
-        #check-word {
-            -webkit-text-stroke: 0; 
-            text-stroke: 0;
-            text-shadow: none; 
-            color: #f4b400; /* Forza il riempimento a Giallo */
-        }
-
-        /* TESTO INFORMATIVO (AUMENTATO) */
-        .main-content p {
-            margin: 5px 0 0; 
-            font-size: 1.1em; /* Ingrandito */
-        }
-        
+ 
         /* NOTA BETA (AUMENTATA E DIVISA SU PIÙ RIGHE) */
         #beta-note {
             font-size: 1.0em; /* Ingrandito */
