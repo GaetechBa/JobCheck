@@ -1,5 +1,5 @@
 {
-    "name": "JobCheck - Rilevatore Annunci",
+    "name": "JobCheck - Analisi Annunci di lavoro",
     "short_name": "JobCheck",
     "description": "Strumento per la verifica della credibilità degli annunci di lavoro online.",
     "start_url": "index.html",
