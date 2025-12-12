@@ -4,7 +4,7 @@
   Autore: Gaetano Percuoco Bari | EPI-ITALIA Etica per Imprese
   Contatti: gae.devba@gmail.com | P.IVA 05874260721
   Creazione: 04/11/2025
-  Data Ultima Modifica: 11/12/2025
+  Data Ultima Modifica: 12/12/2025
 -->
 <html lang="it">
 <head>
@@ -33,7 +33,7 @@
     <link rel="apple-touch-icon" href="icon-512.png">
     <style>
         /* STILE GLOBALE & LAYOUT (CORRETTO) */
-        body {  /* Rimosse max-width e margin per evitare problemi di overflow */
+        body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
             padding: 10px; 
@@ -41,11 +41,28 @@
             color: #333;
         }
 
+        /* 🟢 NUOVO STILE: Icona di Condivisione in alto a destra 🟢 */
+        #app-share-icon {
+            position: absolute;
+            top: 15px; /* Leggermente distanziato dal bordo */
+            right: 15px;
+            font-size: 1.8em;
+            cursor: pointer;
+            color: #1c6aa7; /* Colore tema */
+            text-decoration: none; /* Rimuove la sottolineatura */
+            z-index: 20;
+            transition: color 0.2s;
+        }
+        #app-share-icon:hover {
+            color: #155b93;
+        }
+
         /* NUOVO WRAPPER: Limita e centra TUTTO il contenuto della pagina */
         #main-content-wrapper {
             max-width: 650px; 
             margin: 0 auto; 
-            padding: 0; /* Padding gestito meglio dai div interni */
+            padding: 0; 
+            position: relative; /* Necessario per posizionare l'icona */
         }
 
         h1 { 
@@ -204,6 +221,10 @@
 </head>
 <body>
 
+    <a href="#" id="app-share-icon">
+        📤
+    </a>
+
     <div id="main-content-wrapper">
 
         <h1>🔍 JobCheck</h1>
@@ -282,13 +303,14 @@
                 </button>
             </a>
         </div>
-        </div> <script>
+        </div> 
+    <script>
         // LOGICA DI CALCOLO E SALVATAGGIO (JAVASCRIPT)
         
-        const MAX_HISTORY_ITEMS = 100; 
+        const MAX_HISTORY_ITEMS = 100;    
         const scoreInputs = document.querySelectorAll('.input-score');
         const classificationElement = document.getElementById('classificazione');
-        const totalScoreElement = document.getElementById('punteggio-totale'); 
+        const totalScoreElement = document.getElementById('punteggio-totale');    
         const analyzeButton = document.getElementById('analyze-button');
         const resetButton = document.getElementById('reset-button');
         const saveButton = document.getElementById('save-button');
@@ -307,23 +329,23 @@
         // --- FUNZIONE DI CLASSIFICAZIONE ---
         function getClassification(totalScore) {
             let classificationText = 'In attesa...';
-            let color = '#1c6aa7'; 
+            let color = '#1c6aa7';    
             
-            if (totalScore <= 7) { 
+            if (totalScore <= 7) {    
                 classificationText = '🔴 FALSO / SCAM';
-                color = '#dc3545'; 
+                color = '#dc3545';    
             } else if (totalScore <= 14) {
                 classificationText = '🟠 MOLTO DUBBIO';
-                color = '#ffc107'; 
+                color = '#ffc107';    
             } else if (totalScore <= 18) {
                 classificationText = '🟡 FÀ MOLTA ATTENZIONE';
-                color = '#ffeb3b'; 
+                color = '#ffeb3b';    
             } else if (totalScore <= 28) {
                 classificationText = '🟢 PROBABILMENTE REALE';
-                color = '#34a853'; 
-            } else { 
+                color = '#34a853';    
+            } else {    
                 classificationText = '🔵 CERTAMENTE REALE';
-                color = '#1a73e8'; 
+                color = '#1a73e8';    
             }
 
             return { classificationText, color };
@@ -333,7 +355,7 @@
         function updateAnalysis() {
             let totalScore = 0;
             scoreInputs.forEach(input => {
-                const score = parseInt(input.value) || 0; 
+                const score = parseInt(input.value) || 0;    
                 totalScore += score;
             });
 
@@ -345,16 +367,16 @@
             classificationElement.style.backgroundColor = color;
             
             const textColor = (totalScore > 7 && totalScore <= 21) ? '#333' : 'white';
-            classificationElement.style.color = textColor; 
+            classificationElement.style.color = textColor;    
         }
         
         // --- FUNZIONE DI SALVATAGGIO ---
         function saveResult() {
             const role = document.getElementById('ruolo').value.trim();
             const company = document.getElementById('azienda').value.trim();
-            const source = sourceInput.value; 
+            const source = sourceInput.value;    
             const score = parseInt(totalScoreElement.textContent);
-            const classificationText = classificationElement.textContent; 
+            const classificationText = classificationElement.textContent;    
             
             if (!role && !company) {
                 alert("Inserisci almeno il Ruolo o l'Azienda prima di salvare.");
@@ -370,7 +392,7 @@
                 source: source,
                 score: score,
                 classification: classificationText,
-                timestamp: now.getTime(), 
+                timestamp: now.getTime(),    
                 date: formattedDate
             };
             
@@ -390,7 +412,7 @@
         
         function resetForm() {
             scoreInputs.forEach(input => {
-                input.selectedIndex = 0; 
+                input.selectedIndex = 0;    
             });
             
             document.getElementById('ruolo').value = '';
@@ -398,23 +420,37 @@
             sourceInput.selectedIndex = 0;
 
             totalScoreElement.textContent = '0';
-            classificationElement.textContent = 'In attesa...'; 
-            classificationElement.style.backgroundColor = '#1c6aa7'; 
-            classificationElement.style.color = 'white'; 
+            classificationElement.textContent = 'In attesa...';    
+            classificationElement.style.backgroundColor = '#1c6aa7';    
+            classificationElement.style.color = 'white';    
         }
 
         function setupButtons() {
             analyzeButton.addEventListener('click', updateAnalysis);
             resetButton.addEventListener('click', resetForm);
-            saveButton.addEventListener('click', saveResult); 
+            saveButton.addEventListener('click', saveResult);    
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            resetForm(); 
-            setupButtons(); 
+            resetForm();    
+            setupButtons();    
         });
         
     </script>
-
+    <script>
+        document.getElementById('app-share-icon').addEventListener('click', event => {
+            event.preventDefault();
+            if (navigator.share) {
+                navigator.share({
+                    title: 'JobCheck | Analisi Etica e Rischio Annunci',
+                    text: 'Usa JobCheck per non cadere in trappola! Strumento di analisi per annunci di lavoro falsi.',
+                    url: 'https://app-job-analisis.vercel.app/'
+                });
+            } else {
+                // Fallback per browser che non supportano l'API
+                alert("Il tuo browser non supporta la condivisione nativa. Copia il link: https://app-job-analisis.vercel.app/");
+            }
+        });
+    </script>
 </body>
 </html>
