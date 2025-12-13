@@ -221,19 +221,17 @@
     
     <script>
         document.getElementById('share-btn').addEventListener('click', event => {
-            event.preventDefault();
-            if (navigator.share) {
-                navigator.share({
-                    title: 'JobCheck | Analisi Etica e Rischio Annunci',
-                    text: 'NON CADERE IN TRAPPOLA! Verifica la credibilità degli annunci di lavoro in tempo reale con JobCheck.',
-                    url: 'https://job-check.vercel.app/'
-                });
-            } else {
-                // Fallback per browser che non supportano l'API
-                alert("Il tuo browser non supporta la condivisione nativa. Copia il link: https://job-check.vercel.app/");
-            }
-        });
-    </script>
-
+        event.preventDefault();
+        if (navigator.share) {
+            navigator.share({
+                // Condivide SOLTANTO l'URL corretto della Home Page
+                url: 'https://job-check.vercel.app/' 
+            });
+        } else {
+            // Fallback
+            alert("Il tuo browser non supporta la condivisione nativa. Copia il link: https://job-check.vercel.app/");
+        }
+    });
+</script>
 </body>
 </html>
