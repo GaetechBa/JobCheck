@@ -1,6 +1,6 @@
 # 🔍 JobCheck: Rilevatore Annunci di Lavoro Fraudolenti (BETA)
 
-Una risorsa web gratuita sviluppata da Gaetano Percuoco, uno stusioso con competenze traversali, tra cui la programmazione, che si batte affichè i piùù deboli non subiscano soprusi.L'applicazione serve per assistere candidati e professionisti nella valutazione rapida e oggettiva della credibilità degli annunci di lavoro online. JobCheck utilizza un sistema di punteggio basato su criteri investigativi per identificare indicatori di rischio, frode o scarsa trasparenza.
+Una risorsa web gratuita sviluppata da Gaetano Percuoco, uno intellettuale barese con diverse competenze , tra cui la programmazione, che si batte affichè i piùù deboli non subiscano soprusi.L'applicazione serve per assistere candidati e professionisti nella valutazione rapida e oggettiva della credibilità degli annunci di lavoro online. JobCheck utilizza un sistema di punteggio basato su criteri investigativi per identificare indicatori di rischio, frode o scarsa trasparenza.
 Il tutto nasce da una ricerca accademica e in questa si è analizzato il disagio che vivono i candidati, gli inganni e le truffe in cui s'imbattono, le richieste che ricevono a scapito della dignità personale. Questa è stata considerata un ingiustizia a danno dei più deboli, della società e del tessuto imprenditoriale sano di cui è in gran parte costituito il nostro Paese.L'Italia.
 
 ---
