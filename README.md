@@ -5,7 +5,7 @@ Il tutto nasce da una ricerca accademica e in questa si è analizzato il disagio
 
 ---
 
-✨ Funzionalità
+## ✨ Funzionalità
 
 JobCheck è stato progettato per fornire un'analisi chiara e immediata, basata su un set di criteri fondamentali in un annuncio di lavoro. Criteri che sono stati scelti valutando oltre 2000 annunci di lavoro:
 
@@ -16,7 +16,7 @@ Archivio Locale: Permette il salvataggio dei risultati dell'analisi direttamente
 
 ---
 
-🚀 Come Iniziare
+## 🚀 Come Iniziare
 
 Essendo una Web App , non è richiesta alcuna installazione** o registrazione poiché è davvero totalmente gratuita. Totalmente significa che non prendiamo alcun dato dell'utente!
 
