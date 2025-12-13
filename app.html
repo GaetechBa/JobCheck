@@ -8,7 +8,7 @@
 -->
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
+   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>JobCheck - Analisi annunci di lavoro</title>
@@ -16,14 +16,14 @@
 
     <meta property="og:title" content="JobCheck - Analisi annunci di lavoro">
     <meta property="og:description" content="Strumento di analisi per annunci di lavoro falsi e che rubano i dati">
-    <meta property="og:image" content="https://app-job-analisis.vercel.app/JOB_CECK.jpg">
-    <meta property="og:url" content="https://app-job-analisis.vercel.app/">
+    <meta property="og:image" content="https://job-check.vercel.app/JOB_CECK.jpg"> 
+    <meta property="og:url" content="https://job-check.vercel.app/"> 
     <meta property="og:type" content="website">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="JobCheck - Analisi annunci di lavoro">
     <meta name="twitter:description" content="Strumento di analisi per annunci di lavoro falsi e che rubano i dati">
-    <meta name="twitter:image" content="https://app-job-analisis.vercel.app/JOB_CECK.jpg">
+    <meta name="twitter:image" content="https://job-check.vercel.app/JOB_CECK.jpg"> 
 
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1c6aa7"> 
@@ -442,13 +442,12 @@
             event.preventDefault();
             if (navigator.share) {
                 navigator.share({
-                    title: 'JobCheck | Analisi Etica e Rischio Annunci',
-                    text: 'Usa JobCheck per non cadere in trappola! Strumento di analisi per annunci di lavoro falsi.',
-                    url: 'https://app-job-analisis.vercel.app/'
+                    // Condivide SOLTANTO l'URL della Home Page (job-check.vercel.app)
+                    url: 'https://job-check.vercel.app/' 
                 });
             } else {
-                // Fallback per browser che non supportano l'API
-                alert("Il tuo browser non supporta la condivisione nativa. Copia il link: https://app-job-analisis.vercel.app/");
+                // Fallback
+                alert("Il tuo browser non supporta la condivisione nativa. Copia il link: https://job-check.vercel.app/");
             }
         });
     </script>
