@@ -141,6 +141,15 @@
         #home-button:hover {
             background-color: #155b93;
         }
+      /* Media query per dispositivi stretti: Assicura che i pulsanti si impilino */
+@media (max-width: 400px) {
+    #sort-buttons {
+        flex-direction: column; /* Impila i pulsanti in verticale */
+    }
+    #sort-buttons button {
+        max-width: none; /* Occupano l'intera larghezza disponibile */
+    }
+}
     </style>
 </head>
 <body>
